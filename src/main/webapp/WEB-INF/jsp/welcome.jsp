@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	Welcome <span style="color:blue"><b><u>${name}</u></b>!!</span>  Your Password is <span style="color:#ff6666"><u><b>${password}<a></a></u>!!</span>	 
+	Welcome <span style="color:blue"><b><u>${name}</u></b>!!</span>  <a href="/list-todos">Click Here</a> To Manage Your Todo's!!
 </body>
 
 </html>

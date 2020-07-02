@@ -12,30 +12,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.in28minutes.springboot.web.service.LoginService;
+import com.in28minutes.springboot.web.service.TodoService;
 @Controller
-public class LoginController {
+public class TodoController {
 	@Autowired
-	LoginService loginService;
+	TodoService Service;
 	//Model
-	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public String showLoginPage(ModelMap model){
-		
-		return "login";
+	@RequestMapping(value="/list-todos", method = RequestMethod.GET)
+	public String showTodos(ModelMap model){
+		model.put("todos", Service.retrieveTodos("Zaki"));
+		return "list-todos";
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String showWelcomePage(ModelMap model, @RequestParam String name, @RequestParam String password){
-		boolean isValidUser = loginService.validateUser(name, password);
-		
-		if (!isValidUser) {
-			model.put("errorMessage", "User Does Not Exist!!");
-			return "login";
-		}
-		
-		model.put("name", name);
-		model.put("password", password);
-		
-		return "welcome";
-	}
-
+	
 }
