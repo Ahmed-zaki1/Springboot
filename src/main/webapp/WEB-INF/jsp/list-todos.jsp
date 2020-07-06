@@ -3,12 +3,15 @@
 
 <head>
 <title>Todo's for ${name}</title>
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+	    		rel="stylesheet">
 </head>
 
 <body>
-<center>
-<H1>Your Todos</H1>
-<table>
+
+<div class="container">
+
+<table class="table table-striped">
 <caption>Your Todos Are </caption>
 <thead>
 <tr>
@@ -31,10 +34,11 @@
 
 </tbody>
 </table>
-<br>
 
-<a href="/add-todo">Add a todo</a></center>
 
+<div><a class="button" href="/add-todo">Add a todo</a></div>
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+	    <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</div>		
 </body>
-
 </html>
