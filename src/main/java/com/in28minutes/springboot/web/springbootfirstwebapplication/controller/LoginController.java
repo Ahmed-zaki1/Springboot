@@ -19,25 +19,10 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	//Model
-	@RequestMapping(value="/login", method = RequestMethod.GET)
+	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String showLoginPage(ModelMap model){
-		
-		return "login";
-	}
-	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String showWelcomePage(ModelMap model, @RequestParam String name, @RequestParam String password){
-		boolean isValidUser = loginService.validateUser(name, password);
-		
-		if (!isValidUser) {
-			model.put("errorMessage", "User Does Not Exist!!");
-			return "login";
-		}
-		
-		model.put("name", name);
-		model.put("password", password);
-		
-		return "welcome";
+		model.put("name","Zaki");
+			return "welcome";
 	}
 
 }
