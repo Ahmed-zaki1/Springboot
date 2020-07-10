@@ -74,14 +74,14 @@ public class TodoController {
 	}
 
 	@RequestMapping(value = "/update-todo", method = RequestMethod.POST)
-	public String updateTodo(Model model, @Valid Todo todo, BindingResult result) {
+	public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
 		
 		if(result.hasErrors()){
 			return "todo";
 		}
-todo.setUser((String) ((LinkedHashMap<String, Object>) model).get("name"));
+todo.setUser((String)getLoggedInUserName(model));
 		
-		
+	
 	Service.updateTodo(todo);
 	return "redirect:/list-todos";
 	}
