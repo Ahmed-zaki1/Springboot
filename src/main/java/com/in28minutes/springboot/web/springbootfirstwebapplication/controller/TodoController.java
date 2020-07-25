@@ -26,13 +26,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.in28minutes.springboot.repository.TodoRepository;
 import com.in28minutes.springboot.web.model.Todo;
 import com.in28minutes.springboot.web.service.TodoService;
 @Controller
 public class TodoController {
 	@Autowired
 	TodoService Service;
-	
+	@Autowired
+	TodoRepository todoRepository;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -62,9 +64,9 @@ public class TodoController {
 
 	@RequestMapping(value = "/delete-todo", method = RequestMethod.GET)
 	public String deleteTodo(@RequestParam int id) {
-		/*
-		 * if(id==1) throw new RuntimeException("Something Went Wrong");
-		 */
+		
+		  //if(id==1) throw new RuntimeException("Something Went Wrong");
+		 
 		Service.deleteTodo(id);
 		return "redirect:/list-todos";
 	}
@@ -84,6 +86,7 @@ public class TodoController {
 		}
 todo.setUser((String)getLoggedInUserName(model));
 		
+todoRepository.saveAndFlush(todo);
 	
 	Service.updateTodo(todo);
 	return "redirect:/list-todos";
@@ -99,6 +102,9 @@ todo.setUser((String)getLoggedInUserName(model));
 		
 		Service.addTodo(getLoggedInUserName(model), todo.getDesc(), todo.getTargetDate(),
 				false);
+		todo.setUser((String)getLoggedInUserName(model));
+		todoRepository.save(todo);
 		return "redirect:/list-todos";
+
 	}
 }

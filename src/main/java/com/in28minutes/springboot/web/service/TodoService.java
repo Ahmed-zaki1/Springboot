@@ -15,8 +15,7 @@ public class TodoService {
     private static int todoCount = 3;
 
     static {
-        todos.add (new Todo(1, "Zaki", "Learn Spring MVC", new Date(),
-                false));
+        todos.add (new Todo(1, "Zaki", "Learn Spring MVC", new Date(), false));
         todos.add(new Todo(2, "Zaki", "Learn Struts", new Date(), false));
         todos.add(new Todo(3, "Zaki", "Learn Hibernate", new Date(),
                 false));
@@ -25,11 +24,8 @@ public class TodoService {
 
     public List<Todo> retrieveTodos(String user) {
         List<Todo> filteredTodos = new ArrayList<Todo>();
-        //System.out.println("Line no 28_________-------------USER----------"+user);
         for (Todo todo : todos) {
-        	//System.out.println("Ah_30________-------------USER----------"+user);
             if (todo.getUser().equals(user)) {
-            	//System.out.println("Ah_32________-------------USER----------"+user);
                 filteredTodos.add(todo);
             }
         }
